@@ -18,15 +18,16 @@ df['TITLE_YEAR']=df['TITLE']+' ('+df['YEAR'].astype(str)+')'
 
 
 #load similarity matrix
-loaded_parts = []
+files = os.listdir(os.path.join('scraped_data', 'similarities_matrix'))
+sorted_files = sorted(files, key=lambda x: int(x.split('_')[2].split('.')[0]))
 
-for file in os.listdir(os.path.join('scraped_data','similarities_matrix')):
+loaded_parts = []
+for file in sorted_files:
     if file.endswith('.pkl'):
-        file_path=os.path.join('scraped_data','similarities_matrix',file)
-        part_of_matrix=pickle.load(open(file_path,'rb'))
+        file_path = os.path.join('scraped_data', 'similarities_matrix', file)
+        part_of_matrix = pickle.load(open(file_path, 'rb'))
         loaded_parts.append(part_of_matrix)
 
-similarity_matrix = np.concatenate(loaded_parts)
 
 
 
