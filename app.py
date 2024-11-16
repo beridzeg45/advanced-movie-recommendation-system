@@ -84,6 +84,7 @@ if input_value:
             st.image(poster)
 
     st.markdown(f"**Similar Tags:**<br>{'<br>'.join(similar_tags)}", unsafe_allow_html=True)
+    st.markdown(f'df shape {df.shape}, matrix shape {similarity_matrix.shape}')
 
 
 
