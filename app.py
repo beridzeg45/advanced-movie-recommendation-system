@@ -71,7 +71,10 @@ list_of_movies = df['TITLE_YEAR'].unique().tolist()
 st.set_page_config(layout="wide")
 
 st.header('Movie Recommendation System 🍿🎥🎞️📽️🎬🎦 - By Giorgi Beridze')
-input_value = st.selectbox('Select a movie title', [''] + list_of_movies, help='Type movie title to get recommendations')
+input_value = st.selectbox('Select a movie title', 
+                           [''] + list_of_movies, 
+                           index=(list_of_movies.index("Interstellar (2014)") + 1) if "Interstellar (2014)" in list_of_movies else 0,
+                           help='Type movie title to get recommendations')
 
 if input_value:
     titles, posters, urls, similar_tags = return_recommendations(input_value)
