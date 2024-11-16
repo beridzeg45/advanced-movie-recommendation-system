@@ -19,7 +19,7 @@ df['TITLE_YEAR']=df['TITLE']+' ('+df['YEAR'].astype(str)+')'
 
 #load similarity matrix
 files = os.listdir(os.path.join('scraped_data', 'similarities_matrix'))
-sorted_files = sorted(files, key=lambda x: int(x.split('_')[2].split('.')[0]))
+sorted_files = sorted(files, key=lambda x: int(x.split('_')[-1].split('.')[0]))
 
 loaded_parts = []
 for file in sorted_files:
@@ -27,6 +27,8 @@ for file in sorted_files:
         file_path = os.path.join('scraped_data', 'similarities_matrix', file)
         part_of_matrix = pickle.load(open(file_path, 'rb'))
         loaded_parts.append(part_of_matrix)
+
+similarity_matrix = np.concatenate(loaded_parts)
 
 
 
@@ -85,7 +87,6 @@ if input_value:
             st.image(poster)
 
     st.markdown(f"**Similar Tags:**<br>{'<br>'.join(similar_tags)}", unsafe_allow_html=True)
-    st.markdown(f'df shape {df.shape}, matrix shape {similarity_matrix.shape}')
 
 
 
