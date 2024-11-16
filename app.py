@@ -7,8 +7,6 @@ import pickle
 import streamlit as st
 
 #path=r"C:\Users\berid\python\yts mx project"
-path=''
-
 
 
 
@@ -47,17 +45,6 @@ def return_recommendations(movie_title):
     top_sim_scores=sim_scores[1:101]
     top_movie_indexes=[i[0] for i in top_sim_scores]
     top_recommended_movies=df.loc[top_movie_indexes]
-
-    
-    #similar_genres_count_list=[]
-    #for genres in top_recommended_movies['GENRES']:
-    #    similar_genres_count=0
-    #    for genre in df[df['TITLE_YEAR']==movie_title]['GENRES'].iloc[0].split('|'):
-    #        if genre in genres:
-    #            similar_genres_count+=1
-    #    similar_genres_count_list.append(similar_genres_count)
-    #top_recommended_movies['SIMILAR_GENRES_COUNT']=similar_genres_count_list
-    #top_recommended_movies=top_recommended_movies.sort_values(['SIMILAR_GENRES_COUNT','IMDB_RATING_COUNT'],ascending=False)[:10]
     
     top_recommended_movies=top_recommended_movies.head(10)
 
